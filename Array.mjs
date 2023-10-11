@@ -18,7 +18,6 @@ class Array {
     sort() {
         let array = this.#data;
         let n = this.#size;
-
         for (let i = 0; i < n - 1; i++) {
             for (let j = 0; j < n - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
@@ -28,12 +27,36 @@ class Array {
                     array[j + 1] = temp;
                 }
             }
+
+        }
+    }
+    /*
+    In this method we sort the array from z-a (rearrange the elements in the array in 
+     decreasing order)
+    time complexity:O(n^2)    
+    */
+    decreasingSort() {
+        let array = this.#data;
+        let n = this.#size;
+        for (let i = 0; i < n - 1; i++) {
+            for (let j = 0; j < n - i - 1; j++) {
+                if (array[j] < array[j + 1]) {
+                    // Swap array[j] and array[j+1]
+                    let temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+
+                }
+            }
+
         }
     }
 
     getSortedData() {
         return this.#data;
     }
+
+
 }
 
 let countryData = ["palestine", "jordan", "syria", "lebanon"];
@@ -43,4 +66,8 @@ console.log("Original array:");
 console.log(countryData);
 countries.sort(); // Sort the array
 console.log("Sorted array:");
+console.log(countries.getSortedData());
+
+countries.decreasingSort(); // Sort the array in decreasing order
+console.log("Sorted array in decreasing order:");
 console.log(countries.getSortedData());
