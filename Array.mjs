@@ -90,6 +90,21 @@ class Array {
         return resultsOfExactSearch;
     }
 
+    addAtFirst(value) {
+        if (value != undefined) {
+            this.shift();
+            this.#data[0] = value; // Set the first element at index 0
+            this.#size++;
+        }
+    }
+    //O(n) 
+    //shift the elements by one step(+1 to the right)
+    shift() {
+        for (let i = this.#size - 1; i >= 0; i--) {  // Start from the last element and decrement i
+            this.#data[i + 1] = this.#data[i]; // Move elements to the right
+        }
+    }
+
 }
 
 let countryData = ["palestine", "jordan", "syria", "lebanon"];
@@ -104,12 +119,28 @@ console.log(countries.getSortedData());
 countries.decreasingSort(); // Sort the array in decreasing order
 console.log("Sorted array in decreasing order:");
 console.log(countries.getSortedData());
-let searchItem1 = "z"; // no result found
+let searchItem1 = "qatar"; // no result found
 let searchResults = countries.searchByName(searchItem1);
 console.log(`Search results for "${searchItem1}":`);
 console.log(searchResults);
 
-let searchItem2 = "iraq"; // no result found
+
+
+
+// let elementAdded = "Qatar";
+// let addAtFirst = countries.addAtFirst(elementAdded);
+// console.log(`Add element at the beginning of array: "${elementAdded}":`)
+// console.log(addAtFirst);
+let elementAdded = "Qatar";
+countries.addAtFirst(elementAdded);
+console.log(`Add element at the beginning of array: "${elementAdded}":`);
+console.log(countries.getSortedData());
+
+let searchItem2 = "qatar"; // no result found
 let exactSearchResults = countries.searchExact(searchItem2);
 console.log(`Exact Search results : "${searchItem2}":`);
 console.log(exactSearchResults);
+
+// countries.sort(); // Sort the array
+// console.log("Sorted array:");
+// console.log(countries.getSortedData());
