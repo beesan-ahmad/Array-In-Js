@@ -56,7 +56,13 @@ class Array {
         return this.#data;
     }
 
+    // In this method we search for a country and return all results that close to the input 
 
+    searchByCountry(input) {
+        input = input.toLowerCase();
+        let result = this.#data.filter(country => country.toLowerCase().includes(input));
+        return result;
+    }
 }
 
 let countryData = ["palestine", "jordan", "syria", "lebanon"];
@@ -71,3 +77,7 @@ console.log(countries.getSortedData());
 countries.decreasingSort(); // Sort the array in decreasing order
 console.log("Sorted array in decreasing order:");
 console.log(countries.getSortedData());
+let searchItem = "r"; // the output will be syria and jordan
+let searchResults = countries.searchByCountry(searchItem);
+console.log(`Search results for "${searchItem}":`);
+console.log(searchResults);
